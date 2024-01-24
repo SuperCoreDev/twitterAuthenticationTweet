@@ -10,7 +10,7 @@ export function getCookie(name) {
 const TwitterShare = () => {
   const [ twitter, setTwitter ] = useState(null);
   const [ postStatus, setPostStatus ] = useState('please login first.');
-  const [ text, setText ] = useState('Tweet text here...');
+  const [ text, setText ] = useState('Twee text here...');
   const [ videoUrl, setVideoUrl ] = useState('https://video.twimg.com/ext_tw_video/1483426943181668354/pu/vid/640x360/hA1l1K8uaxIzjmUb.mp4');
 
   function handleClickLoginButton() {
@@ -36,8 +36,10 @@ const TwitterShare = () => {
     setPostStatus('Tweeting...');
     Axios.get(`/action/post?token=${token}&tokenSecret=${tokenSecret}&text=${text}&url=${videoUrl}`)
     .then(res => {
-      if (res.data === 'finish') {
-        setPostStatus('Check your tweet on twitter.');
+      if (res.data.status === 'finish') {
+        setPostStatus('Check your tw on x.');
+        console.log(res.data.link)
+        window.open(res.data.link , '_blank')
       }
     })
     
@@ -55,8 +57,8 @@ const TwitterShare = () => {
         </div>
       }
       { twitter ? 
-        <button onClick={handleShareToTwitter}>Share to Twitter</button> :
-        <button onClick={handleClickLoginButton}>Login to share twitter</button>
+        <button onClick={handleShareToTwitter}>Share to tw</button> :
+        <button onClick={handleClickLoginButton}>Login to share tw</button>
       }
     </div>
   )

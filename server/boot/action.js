@@ -21,7 +21,7 @@ module.exports = function() {
   passport.use(new Strategy({
       consumerKey: process.env['TWITTER_CONSUMER_KEY'],
       consumerSecret: process.env['TWITTER_CONSUMER_SECRET'],
-      callbackURL: '/oauth/callback/twitter.com',
+      callbackURL: 'http://localhost:3000/oauth/callback/twitter.com',
     },
     function(token, tokenSecret, profile, cb) {
       return cb(null, {...profile, token, tokenSecret});
